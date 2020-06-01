@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AlarmClock</string>
+    <string name="set_an_alarm">Set an alarm</string>
+    <string name="set_alarm">Set Alarm</string>
+    <string name="did_you_set_an_alarm">Did you set an alarm?</string>
+    <string name="turn_off_alarm">Turn Off Alarm</string>
+    <string name="update_text_1"> </string>
+    <string name="update_text_2">Alarm Off</string>
+    <string-array name="audios">
+        <item> Pick an audio </item>
+        <item> One </item>
+        <item> Two </item>
+        <item> Three </item>
+        <item> Four </item>
+        <item> Five </item>
+    </string-array>
+</resources>
