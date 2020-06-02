@@ -45,9 +45,9 @@ public class RingtonePlayingService extends Service
 //      Setup the Notification Service
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 //      Setup an intent that goes to the main activity when the Notification is clicked
-        Intent intentMainActivity = new Intent(getApplicationContext(),MainActivity.class);
+        Intent intentAlarmOff = new Intent(getApplicationContext(),AlarmOff.class);
 //      Setup a pending intent which will be used to open the main activity once the notification is clicked
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intentMainActivity,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intentAlarmOff,0);
 //      Create the notification and its parameters
         Notification  notification = new Notification.Builder(this)
                 .setContentTitle("Your Alarm is Going Off!!")

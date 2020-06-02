@@ -35,7 +35,8 @@
         android:layout_alignParentStart="true"
         android:text="@string/set_alarm"
         android:layout_marginBottom="4dp"
-        android:onClick="setAlarm"/>
+        android:onClick="setAlarm"
+        android:backgroundTint="#f74848"/>
 
     <Button
         android:id="@+id/turn_off_alarm"
@@ -46,7 +47,8 @@
         android:layout_alignEnd="@id/set_alarm"
         android:text="@string/turn_off_alarm"
         android:layout_marginBottom="8dp"
-        android:onClick="turnOffAlarm"/>
+        android:onClick="turnOffAlarm"
+        android:backgroundTint="#f74848"/>
 
     <Spinner
         android:id="@+id/audio_spinner"
