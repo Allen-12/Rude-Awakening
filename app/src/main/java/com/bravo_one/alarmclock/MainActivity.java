@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra("audioChoice",audioChosen);
 //      Stop the ringtone
         sendBroadcast(intent);
+        Intent stopMusicService = new Intent(this,RingtonePlayingService.class);
+        stopMusicService.putExtra("stop", true);
+        stopService(stopMusicService);
     }
 
     @Override

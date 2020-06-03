@@ -30,6 +30,10 @@ public class RingtonePlayingService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
+        if (intent.getBooleanExtra("stop", false)) {
+            stopForeground(true);
+            stopSelf();
+        }
         Log.i("LocalService", "Received start id " + startId + ": " + intent);
 
 //      Fetch the extra string for the alarm off/alarm on values
@@ -42,14 +46,14 @@ public class RingtonePlayingService extends Service
         Log.i("Ringtone state",state);
         Log.i("Audio Choice Ringtone", String.valueOf(audioChoice));
 
-//      Setup the Notification Service
-        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 //      Setup an intent that goes to the main activity when the Notification is clicked
         Intent intentAlarmOff = new Intent(getApplicationContext(),AlarmOff.class);
 //      Setup a pending intent which will be used to open the main activity once the notification is clicked
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intentAlarmOff,0);
+//      Setup the Notification Service
+        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 //      Create the notification and its parameters
-        Notification  notification = new Notification.Builder(this)
+        Notification notification = new Notification.Builder(this)
                 .setContentTitle("Your Alarm is Going Off!!")
                 .setSmallIcon(R.drawable.ic_alarm_on_black_24dp)
                 .setContentText("Click to turn off alarm")
@@ -80,7 +84,8 @@ public class RingtonePlayingService extends Service
 
     //      Call the notification to be shown
             assert notificationManager != null;
-            notificationManager.notify(0,notification);
+//            notificationManager.notify(0,notification);
+            startForeground(1,notification);
 
 //          Start the ringtone randomly
             int minimumNumber = 1;
@@ -96,7 +101,7 @@ public class RingtonePlayingService extends Service
             }
             else if (audioChoice == 2)
             {
-                mediaSong = MediaPlayer.create(this, R.raw.the_snooze_button_speech);
+                mediaSong = MediaPlayer.create(this, R.raw.david_goggins_never_snooze);
                 mediaSong.start();
             }
             else if (audioChoice == 3)
@@ -111,7 +116,7 @@ public class RingtonePlayingService extends Service
             }
             else if (audioChoice == 5)
             {
-                mediaSong = MediaPlayer.create(this, R.raw.you_will_never_hit_snooze_again);
+                mediaSong = MediaPlayer.create(this, R.raw.get_out_of_bed);
                 mediaSong.start();
             }
             else
@@ -156,6 +161,7 @@ public class RingtonePlayingService extends Service
         // Tell the user we stopped.
         Log.i("On Destroy called","Music stopped");
         Toast.makeText(this, "Sound Off", Toast.LENGTH_SHORT).show();
+        mediaSong.stop();
         super.onDestroy();
         this.isRunning = false;
     }
